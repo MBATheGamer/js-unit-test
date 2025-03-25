@@ -6,10 +6,6 @@
     "test": "vitest"
   },
   "devDependencies": {
-    "@types/bun": "latest",
     "vitest": "^3.0.9"
-  },
-  "peerDependencies": {
-    "typescript": "^5"
   }
 }
