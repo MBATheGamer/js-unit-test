@@ -1,5 +1,5 @@
 import { describe, expect, it, test } from "vitest";
-import { calculateAverage, fizzBuzz, max } from "../src/intro";
+import { calculateAverage, factorial, fizzBuzz, max } from "../src/intro";
 
 describe("max", () => {
   test("Should return the first argument if it is greater.", () => {
@@ -56,5 +56,31 @@ describe("calculateAverage", () => {
 
   it("Should calculate the average of an array with three elements.", () => {
     expect(calculateAverage([7, 8, 9])).toBe(8);
+  });
+});
+
+describe("factorial", () => {
+  it("Should return 1 if given number is 0.", () => {
+    expect(factorial(0)).toBe(1);
+  });
+
+  it("Should return 1 if given number is 1.", () => {
+    expect(factorial(1)).toBe(1);
+  });
+
+  it("Should return 2 if given number is 2.", () => {
+    expect(factorial(2)).toBe(2);
+  });
+
+  it("Should return 6 if given number is 3.", () => {
+    expect(factorial(3)).toBe(6);
+  });
+
+  it("Should return 12 if given number is 4.", () => {
+    expect(factorial(3)).toBe(6);
+  });
+
+  it("Should return undefined if given a negative number.", () => {
+    expect(factorial(3)).toBe(6);
   });
 });
