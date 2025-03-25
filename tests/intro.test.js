@@ -81,6 +81,6 @@ describe("factorial", () => {
   });
 
   it("Should return undefined if given a negative number.", () => {
-    expect(factorial(3)).toBe(6);
+    expect(factorial(-1)).toBe(undefined);
   });
 });
