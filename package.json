@@ -3,9 +3,11 @@
   "module": "index.ts",
   "type": "module",
   "scripts": {
-    "test": "vitest"
+    "test": "vitest",
+    "test:ui": "vitest --ui"
   },
   "devDependencies": {
+    "@vitest/ui": "3.0.9",
     "vitest": "^3.0.9"
   }
 }
