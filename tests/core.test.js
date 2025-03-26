@@ -2,6 +2,7 @@ import { describe, expect, it } from "vitest";
 import {
   calculateDiscount,
   canDrive,
+  fetchData,
   getCoupons,
   isPriceInRange,
   isValidUsername,
@@ -304,5 +305,20 @@ describe("isPriceInRange with parameterized test", () => {
     },
   ])("Should return $result when $scenario", ({ price, min, max, result }) => {
     expect(isPriceInRange(price, min, max)).toBe(result);
+  });
+});
+
+describe("fetchData", () => {
+  it("Should return a promise that will resolve to an array of numbers", () => {
+    fetchData().then(result => {
+      expect(Array.isArray(result)).toBe(true);
+      expect(result.length).toBeGreaterThan(0);
+    });
+  });
+
+  it("Should return a promise that will resolve to an array of numbers with async-await", async () => {
+    const result = await fetchData();
+    expect(Array.isArray(result)).toBe(true);
+    expect(result.length).toBeGreaterThan(0);
   });
 });

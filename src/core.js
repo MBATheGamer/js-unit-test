@@ -75,3 +75,13 @@ export function canDrive(age, countryCode) {
 
   return age >= legalDrivingAge[countryCode];
 }
+
+// Lesson: Testing asynchronous code
+export function fetchData() {
+  return new Promise(resolve => {
+    setTimeout(() => {
+      const data = [1, 2, 3];
+      resolve(data);
+    });
+  });
+}
