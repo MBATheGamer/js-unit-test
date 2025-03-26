@@ -1,4 +1,5 @@
-import { describe, expect } from "vitest";
+import { describe, expect, it } from "vitest";
+import { getCoupons } from "../src/core";
 
 describe("test suite", () => {
   it("test case: string", () => {
@@ -49,5 +50,36 @@ describe("test suite", () => {
     expect(result).toHaveProperty("name");
     // or
     expect(typeof result.name).toBe("string");
+  });
+});
+
+describe("getCoupons", () => {
+  it("Should return an array of coupons.", () => {
+    const coupons = getCoupons();
+
+    expect(Array.isArray(coupons)).toBe(true);
+
+    expect(coupons.length).toBeGreaterThan(0);
+  });
+
+  it("Should return an array with valid coupon codes.", () => {
+    const coupons = getCoupons();
+
+    coupons.forEach(coupon => {
+      expect(coupon).toHaveProperty("code");
+      expect(typeof coupon.code).toBe("string");
+      expect(coupon.code).toBeTruthy();
+    });
+  });
+
+  it("Should return an array with valid discounts.", () => {
+    const coupons = getCoupons();
+
+    coupons.forEach(coupon => {
+      expect(coupon).toHaveProperty("discount");
+      expect(typeof coupon.discount).toBe("number");
+      expect(coupon.discount).toBeGreaterThan(0);
+      expect(coupon.discount).toBeLessThan(1);
+    });
   });
 });
