@@ -6,10 +6,14 @@ To install dependencies:
 bun install
 ```
 
-To run:
+To run tests in CLI:
 
 ```bash
-bun run index.ts
+bun run test
 ```
 
-This project was created using `bun init` in bun v1.2.6. [Bun](https://bun.sh) is a fast all-in-one JavaScript runtime.
+To run tests in Browser:
+
+```bash
+bun run test:ui
+```
