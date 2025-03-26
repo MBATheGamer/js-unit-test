@@ -1,4 +1,12 @@
-import { describe, expect, it } from "vitest";
+import {
+  afterAll,
+  afterEach,
+  beforeAll,
+  beforeEach,
+  describe,
+  expect,
+  it,
+} from "vitest";
 import {
   calculateDiscount,
   canDrive,
@@ -321,4 +329,16 @@ describe("fetchData", () => {
     expect(Array.isArray(result)).toBe(true);
     expect(result.length).toBeGreaterThan(0);
   });
+});
+
+describe("test suite", () => {
+  beforeAll(() => console.log("beforeAll called"));
+
+  beforeEach(() => console.log("beforeEach called"));
+
+  afterEach(() => console.log("afterEach called"));
+
+  afterAll(() => console.log("afterAll called"));
+
+  it("test case 1", () => {});
 });
