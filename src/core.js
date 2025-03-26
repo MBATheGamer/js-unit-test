@@ -44,3 +44,8 @@ export function validateUserInput(username, age) {
 
   return errors.length === 0 ? "Validation successful" : errors.join(", ");
 }
+
+// Lesson: Boundary testing
+export function isPriceInRange(price, min, max) {
+  return price >= min && price <= max;
+}
