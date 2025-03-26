@@ -264,3 +264,45 @@ describe("canDrive with each", () => {
     expect(canDrive(16, "UZ")).toMatch(/invalid/i);
   });
 });
+
+describe("isPriceInRange with parameterized test", () => {
+  it.each([
+    {
+      scenario: "the price is outside the range",
+      price: -1,
+      min: 0,
+      max: 100,
+      result: false,
+    },
+    {
+      scenario: "the price is outside the range",
+      price: 101,
+      min: 0,
+      max: 100,
+      result: false,
+    },
+    {
+      scenario: "the price is equal to the min",
+      price: 0,
+      min: 0,
+      max: 100,
+      result: true,
+    },
+    {
+      scenario: "the price is equal to the max.",
+      price: 100,
+      min: 0,
+      max: 100,
+      result: true,
+    },
+    {
+      scenario: "the price is within the range",
+      price: 50,
+      min: 0,
+      max: 100,
+      result: true,
+    },
+  ])("Should return $result when $scenario", ({ price, min, max, result }) => {
+    expect(isPriceInRange(price, min, max)).toBe(result);
+  });
+});
