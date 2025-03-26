@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { calculateDiscount, getCoupons } from "../src/core";
+import { calculateDiscount, getCoupons, validateUserInput } from "../src/core";
 
 describe("test suite", () => {
   it("test case: string", () => {
@@ -85,32 +85,83 @@ describe("getCoupons", () => {
 });
 
 describe("calculateDiscount", () => {
-  it("should return discounted price if given valid code.", () => {
+  it("Should return discounted price if given valid code.", () => {
     expect(calculateDiscount(10, "SAVE10")).toBe(9);
     expect(calculateDiscount(10, "SAVE20")).toBe(8);
   });
 
-  it("should handle non-numeric price.", () => {
+  it("Should handle non-numeric price.", () => {
     const result = calculateDiscount("10", "SAVE10");
 
     expect(result).toMatch(/invalid price/i);
   });
 
-  it("should handle negative price.", () => {
+  it("Should handle negative price.", () => {
     const result = calculateDiscount(-10, "SAVE10");
 
     expect(result).toMatch(/invalid price/i);
   });
 
-  it("should handle non-string discount code.", () => {
+  it("Should handle non-string discount code.", () => {
     const result = calculateDiscount(10, 10);
 
     expect(result).toMatch(/invalid discount/i);
   });
 
-  it("should handle invalid discount code.", () => {
+  it("Should handle invalid discount code.", () => {
     const result = calculateDiscount(10, "INVALID");
 
     expect(result).toBe(10);
+  });
+});
+
+describe("validateUserInput", () => {
+  it("Should return success if given valid input.", () => {
+    const valid = validateUserInput("MBATheGamer", 30);
+
+    expect(valid).toMatch(/success/i);
+  });
+
+  it("Should return an error if username is not a string.", () => {
+    const valid = validateUserInput(30, 30);
+
+    expect(valid).toMatch(/invalid username/i);
+  });
+
+  it("Should return an error if username is less then 3 characters.", () => {
+    const valid = validateUserInput("MB", 30);
+
+    expect(valid).toMatch(/invalid username/i);
+  });
+
+  it("Should return an error if username is longer then 255 characters.", () => {
+    const valid = validateUserInput("M".repeat(256), 30);
+
+    expect(valid).toMatch(/invalid username/i);
+  });
+
+  it("Should return an error if age is not a number.", () => {
+    const valid = validateUserInput("MBATheGamer", "30");
+
+    expect(valid).toMatch(/invalid age/i);
+  });
+
+  it("Should return an error if age is less then 18.", () => {
+    const valid = validateUserInput("MBATheGamer", 17);
+
+    expect(valid).toMatch(/invalid age/i);
+  });
+
+  it("Should return an error if age is greater then 100.", () => {
+    const valid = validateUserInput("MBATheGamer", 101);
+
+    expect(valid).toMatch(/invalid age/i);
+  });
+
+  it("Should return an error if both username and age are invalid.", () => {
+    const valid = validateUserInput("", 0);
+
+    expect(valid).toMatch(/invalid username/i);
+    expect(valid).toMatch(/invalid age/i);
   });
 });
